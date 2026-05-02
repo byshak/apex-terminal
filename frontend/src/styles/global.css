@@ -1,0 +1,149 @@
+:root {
+  --bg-primary: #060b14;
+  --bg-secondary: #0a1020;
+  --bg-panel: #0e1628;
+  --bg-card: #121d32;
+  --accent-blue: #2d8cff;
+  --accent-green: #00e5a0;
+  --accent-red: #ff3d6b;
+  --accent-amber: #ffb020;
+  --accent-purple: #9b7cfc;
+  --text-primary: #e2ecff;
+  --text-secondary: #6b90b8;
+  --text-muted: #3a5878;
+  --border: rgba(45,140,255,0.15);
+  --border-hover: rgba(45,140,255,0.35);
+  --shadow-blue: 0 0 20px rgba(45,140,255,0.1);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
+
+.mono { font-family: 'Space Mono', monospace; }
+.orbitron { font-family: 'Orbitron', sans-serif; }
+
+@keyframes flash-green {
+  0% { background: rgba(0,229,160,0.0); }
+  25% { background: rgba(0,229,160,0.2); box-shadow: 0 0 12px rgba(0,229,160,0.4); }
+  100% { background: rgba(0,229,160,0.0); }
+}
+@keyframes flash-red {
+  0% { background: rgba(255,61,107,0.0); }
+  25% { background: rgba(255,61,107,0.2); box-shadow: 0 0 12px rgba(255,61,107,0.4); }
+  100% { background: rgba(255,61,107,0.0); }
+}
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.flash-up { animation: flash-green 0.5s ease; }
+.flash-down { animation: flash-red 0.5s ease; }
+.fade-in-up { animation: fade-in-up 0.3s ease forwards; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-panel) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  transition: all 0.15s ease;
+}
+.btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+.btn.active {
+  background: rgba(45,140,255,0.15);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.up { color: var(--accent-green); }
+.down { color: var(--accent-red); }
+.neutral { color: var(--text-secondary); }
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.panel-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+input[type="number"], input[type="text"] {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+input:focus { outline: none; border-color: var(--accent-blue); }
+input::placeholder { color: var(--text-muted); }
+
+select {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  html, body, #root { overflow: auto; }
+}
