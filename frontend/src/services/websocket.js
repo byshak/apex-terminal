@@ -17,7 +17,7 @@ export function connectWS(onMessage) {
 
 function initWS() {
   const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  const url = `${protocol}://${location.host}/ws`;
+  const wsHost = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('https://','').replace('http://','') : location.host; const url = `${protocol}://${wsHost}/ws`;
 
   try {
     ws = new WebSocket(url);
